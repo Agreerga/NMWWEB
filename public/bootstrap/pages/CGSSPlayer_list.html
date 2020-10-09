@@ -9,18 +9,18 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th width="5%">Leader</th>
-                    <th width="10%">ID</th>
-                    <th width="5%">Plv</th>
-                    <th width="5%">PRP</th>
-                    <th width="5%">Fans</th>
-                    <th width="5%">Cu</th>
-                    <th width="5%">Co</th>
-                    <th width="5%">Pa</th>
-                    <th width="5%">All</th>
-                    <th width="5%">FC</th>
-                    <th width="5%">Register</th>
-                    <th width="15%">Last Login</th>
+                    <th>Leader</th>
+                    <th>ID</th>
+                    <th>Plv</th>
+                    <th>PRP</th>
+                    <th>Fans</th>
+                    <th>Cu</th>
+                    <th>Co</th>
+                    <th>Pa</th>
+                    <th>All</th>
+                    <th>FC</th>
+                    <th>Register</th>
+                    <th>Last Login</th>
                 </tr>
                 </thead>
                 <tbody id="datable_content">
@@ -31,30 +31,53 @@
 </div>
 <script>
     $.ajax({
-        url:'http://kutabare.ros.tw:16888/api/nmw/cgssids',
+        url:'http://kutabare.ros.tw:16888/api/nmw/cgssplayer',
         method:'GET',
         success:function(res){
             for(let id in res['query']){
+                let leader_pot = res['query'][id]['leader_card_vo'] + "/" +
+                    res['query'][id]['leader_card_da'] + "/" +
+                    res['query'][id]['leader_card_vi'] + "/" +
+                    res['query'][id]['leader_card_life'];
+                let cu_pot = res['query'][id]['sup_cu_card_vo'] + "/" +
+                    res['query'][id]['sup_cu_card_da'] + "/" +
+                    res['query'][id]['sup_cu_card_vi'] + "/" +
+                    res['query'][id]['sup_cu_card_life'];
+                let co_pot = res['query'][id]['sup_co_card_vo'] + "/" +
+                    res['query'][id]['sup_co_card_da'] + "/" +
+                    res['query'][id]['sup_co_card_vi'] + "/" +
+                    res['query'][id]['sup_co_card_life'];
+                let pa_pot = res['query'][id]['sup_pa_card_vo'] + "/" +
+                    res['query'][id]['sup_pa_card_da'] + "/" +
+                    res['query'][id]['sup_pa_card_vi'] + "/" +
+                    res['query'][id]['sup_pa_card_life'];
+                let all_pot = res['query'][id]['sup_all_card_vo'] + "/" +
+                    res['query'][id]['sup_all_card_da'] + "/" +
+                    res['query'][id]['sup_all_card_vi'] + "/" +
+                    res['query'][id]['sup_all_card_life'];
                 $("#datable_content").append("<tr>" +
-                    "<td><img width=\"76px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/100670.png\" /></td>" +
-                    "<td>" + res['query'][id]['cgss_id']   + "</td>" +
-                    "<td>cc</td>" +
-                    "<td>dd</td>" +
-                    "<td>ee</td>" +
-                    "<td><img width=\"76px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/100492.png\" /></td>" +
-                    "<td><img width=\"76px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/200780.png\" /></td>" +
-                    "<td><img width=\"76px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/300776.png\" /></td>" +
-                    "<td><img width=\"76px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/100298.png\" /></td>" +
-                    "<td>jj</td>" +
-                    "<td>kk</td>" +
-                    "<td>ll</td>" +
+                    "<td title=\"" + leader_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['leader_card_no'] + ".png\" /></td>" +
+                    "<td title=\"" + res['query'][id]['cgss_id'] + "\">" +  res['query'][id]['name'] + "</td>" +
+                    "<td>" + res['query'][id]['level'] + "</td>" +
+                    "<td>" + res['query'][id]['prp'] + "</td>" +
+                    "<td>" + res['query'][id]['fan'] + "</td>" +
+                    "<td title=\"" + cu_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_cu_card_no'] + ".png\" /></td>" +
+                    "<td title=\"" + co_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_co_card_no'] + ".png\" /></td>" +
+                    "<td title=\"" + pa_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_pa_card_no'] + ".png\" /></td>" +
+                    "<td title=\"" + all_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_all_card_no'] + ".png\" /></td>" +
+                    "<td>" + res['query'][id]['fc_master'] + "/" + res['query'][id]['clear_master'] +
+                    "<br>" + res['query'][id]['fc_masterplus'] + "/" + res['query'][id]['clear_masterplus'] +
+                    "<br>" + res['query'][id]['fc_trick'] + "/" + res['query'][id]['clear_trick'] +
+                    "</td>" +
+                    "<td>" + new Date(res['query'][id]['register_date']*1000).toJSON().substring(0,10) + "</td>" +
+                    "<td>" + new Date(res['query'][id]['last_login_date']*1000).toJSON().substring(0,10) + "</td>" +
                     "</tr>");
             }
             $('#dataTable').DataTable({
                 searching: false,
                 sort: true,
                 columnDefs: [{
-                    targets: [0,5,6,7,8],
+                    targets: [0,1,5,6,7,8,9],
                     orderable: true,
                 }]
             });
