@@ -32,6 +32,11 @@
 
 <script>
     $(function(){
+        if(sessionStorage.username == undefined){
+            sessionStorage.clear();
+            window.location.href = "login.html";
+            return;
+        };
         $('#user_header_name').text(sessionStorage.username);
     });
 </script>
