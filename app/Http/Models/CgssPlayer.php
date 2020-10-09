@@ -4,7 +4,7 @@ namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CgssPlayer
+class CgssPlayer extends Model
 {
     protected $table = 'cgss_player';
     const CREATED_AT = null;  //不讓laravel ORM自動去更新CREATED_AT欄位
