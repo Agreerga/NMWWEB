@@ -17,6 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <meta name="google-signin-client_id" content="1069367207605-jado73djvt7bc302nrmpht39reiifgir.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
 
@@ -56,20 +58,10 @@
                       Login
                     </a>
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                    <a href="index.html" data-longtitle="true" data-onsuccess="Google_signIn" class="g-signin2">
                       <i class="fab fa-google fa-fw"></i> Login with Google
                     </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
                   </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -91,7 +83,15 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
+  <script>
+    function Google_signIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
+  </script>
 </body>
 
 </html>

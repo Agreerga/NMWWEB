@@ -21,7 +21,7 @@
 
   <script src="global.js"></script>
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>NMWWEB</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,6 +29,9 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 </head>
 
@@ -97,10 +100,10 @@
   </div>
 
   <script>
-    $('#accordionSidebar').load('layouts/layout_sidebar.html',function(){
-      LoadContentPage('dashboard');
+    $('#accordionSidebar').load('layouts/nmw_sidebar.html',function(){
+      LoadContentPage('CGSSPlayer_list');
     });
-    $('#website_header').load('layouts/layout_header.html',function(){
+    $('#website_header').load('layouts/nmw_header.html',function(){
     });
     $('#website_footer').load('layouts/layout_footer.html',function(){
     });
