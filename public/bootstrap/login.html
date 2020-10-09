@@ -67,6 +67,8 @@
       console.log('Name: ' + profile.getName());
       console.log('Image URL: ' + profile.getImageUrl());
       console.log('Email: ' + profile.getEmail());
+      sessionStorage.username=profile.getName();
+      window.location.href = "index.html";
     }
     function GuestLogin() {
       sessionStorage.username="guest";
