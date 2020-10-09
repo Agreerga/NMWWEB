@@ -17,5 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/nmw/debug', 'api\TestController@test');
-Route::get('/nmw/cgssids', 'api\CGSSController@debug');
+Route::get('/nmw/cgssids', 'api\CGSSController@test');
 
