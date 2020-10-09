@@ -39,7 +39,7 @@
               <h1 class="h4 text-gray-900 mb-4">Welcome to NMW Web</h1>
             </div>
             <hr>
-            <a href="" data-longtitle="true" data-onsuccess="Google_signIn" class="g-signin2"></a>
+            <a href="" onclick="clickSignedIn();" data-longtitle="true" data-onsuccess="Google_signIn" class="g-signin2"></a>
             <hr>
             <button onclick="GuestLogin();">Sing in with Guest</button>
             <hr>
@@ -60,8 +60,15 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
   <script>
+    var isSigned = false;
+    function clickSignedIn()
+    {
+      isSigned = true;
+    }
     sessionStorage.clear();
     function Google_signIn(googleUser) {
+      if(!isSigned) return;
+      sessionStorage.clear();
       var profile = googleUser.getBasicProfile();
       console.log('ID: ' + profile.getId());
       console.log('Name: ' + profile.getName());
@@ -71,6 +78,7 @@
       window.location.href = "index.html";
     }
     function GuestLogin() {
+      sessionStorage.clear();
       sessionStorage.username="guest";
       window.location.href = "index.html";
     }
