@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
+  <title>NMW Web - Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,6 +19,7 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <meta name="google-signin-client_id" content="1069367207605-jado73djvt7bc302nrmpht39reiifgir.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="global.js"></script>
 
 </head>
 
@@ -28,48 +29,23 @@
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
-
-      <div class="col-xl-10 col-lg-12 col-md-9">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-              <div class="col-lg-6">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                  </div>
-                  <form class="user">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
-                    </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                      Login
-                    </a>
-                    <hr>
-                    <a href="index.html" data-longtitle="true" data-onsuccess="Google_signIn" class="g-signin2">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                  </form>
-                </div>
-              </div>
+      <div class="card" style="width: 500px;">
+        <div>
+          <img width="100%" src="https://imas.gamedbs.jp/cgss/images/OHNSo0Rfwos7UgCBJ48-27q15ang7_AwfDtbkOX3YCY.jpg"></img>
+        </div>
+        <div class="col-lg-12">
+          <div class="p-5">
+            <div class="text-left">
+              <h1 class="h4 text-gray-900 mb-4">Welcome to NMW Web</h1>
             </div>
+            <hr>
+            <a href="" data-longtitle="true" data-onsuccess="Google_signIn" class="g-signin2"></a>
+            <hr>
+            <button onclick="GuestLogin();">Sing in with Guest</button>
+            <hr>
           </div>
         </div>
-
       </div>
-
     </div>
 
   </div>
@@ -84,12 +60,17 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
   <script>
+    sessionStorage.clear();
     function Google_signIn(googleUser) {
       var profile = googleUser.getBasicProfile();
       console.log('ID: ' + profile.getId());
       console.log('Name: ' + profile.getName());
       console.log('Image URL: ' + profile.getImageUrl());
       console.log('Email: ' + profile.getEmail());
+    }
+    function GuestLogin() {
+      sessionStorage.username="guest";
+      window.location.href = "index.html";
     }
   </script>
 </body>
