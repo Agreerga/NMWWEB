@@ -23,5 +23,15 @@ class CGSSController extends Controller
             'query' => $result,
         ]);
     }
+
+    public function getPlayerDataList()
+    {
+        $result = $this->cgssRepo->get_player_data();
+
+        return response()->json([
+            'status' => '0',
+            'query' => $result,
+        ]);
+    }
 }
 

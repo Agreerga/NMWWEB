@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/nmw/debug', 'api\TestController@test');
 Route::get('/nmw/cgssids', 'api\CGSSController@test');
+Route::get('/nmw/cgssplayer', 'api\CGSSController@getPlayerDataList');
 

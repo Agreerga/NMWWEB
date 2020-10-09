@@ -17,5 +17,11 @@ class CgssPlayerRepository extends BaseRepository
         $user = $this->model::select('cgss_id');
         return $user->get();
     }
+
+    public function get_player_data()
+    {
+        $user = $this->model::select('*');
+        return $user->get();
+    }
 }
 
