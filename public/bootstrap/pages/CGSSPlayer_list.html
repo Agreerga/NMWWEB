@@ -9,18 +9,18 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Leader</th>
-                    <th>ID</th>
-                    <th>Plv</th>
-                    <th>PRP</th>
-                    <th>Fans</th>
-                    <th>Cu</th>
-                    <th>Co</th>
-                    <th>Pa</th>
-                    <th>All</th>
-                    <th>FC</th>
-                    <th>Register</th>
-                    <th>Last Login</th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">頭像</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">ID</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">Plv</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">PRP</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">粉絲數</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">Cu</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">Co</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">Pa</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">All</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">FC</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">註冊天數</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">最後登入</span></th>
                 </tr>
                 </thead>
                 <tbody id="datable_content">
@@ -35,6 +35,8 @@
         method:'GET',
         success:function(res){
             for(let id in res['query']){
+                let checkLogin = parseInt(new Date(Date.now() - res['query'][id]['last_login_date']*1000)/1000/60/60/24);
+                let logintext = checkLogin > 7 ? "<span style=\"color:red;\">":"<span style=\"color:green;\">";
                 let leader_pot = res['query'][id]['leader_card_vo'] + "/" +
                     res['query'][id]['leader_card_da'] + "/" +
                     res['query'][id]['leader_card_vi'] + "/" +
@@ -69,19 +71,23 @@
                     "<br>" + res['query'][id]['fc_masterplus'] + "/" + res['query'][id]['clear_masterplus'] +
                     "<br>" + res['query'][id]['fc_trick'] + "/" + res['query'][id]['clear_trick'] +
                     "</td>" +
-                    "<td>" + new Date(res['query'][id]['register_date']*1000).toJSON().substring(0,10) + "</td>" +
-                    "<td>" + new Date(res['query'][id]['last_login_date']*1000).toJSON().substring(0,10) + "</td>" +
+                    "<td>" + parseInt(new Date(Date.now() - res['query'][id]['register_date']*1000)/1000/60/60/24) + "</td>" +
+                    "<td>" + logintext + new Date(res['query'][id]['last_login_date']*1000).toJSON().substring(0,10) + "</span></td>" +
                     "</tr>");
             }
             $('#dataTable').DataTable({
                 searching: true,
                 sort: true,
                 pagingType: "numbers",
+                order: [[ 3, "desc" ]],
                 lengthMenu: [ [20, 50, -1], [20, 50, "All"] ],
                 language: {
                     lengthMenu: "每頁顯示玩家數量 _MENU_",
                     zeroRecords: "Nothing found",
                     info: "第 _PAGE_ / _PAGES_ 頁"
+                },
+                rowCallback: function(nRow, data, index) {
+                    $('td', nRow).css('background-color', index % 2 == 0?'white':'whitesmoke');
                 },
                 columnDefs: [{
                     targets: [0,1,5,6,7,8,9],
