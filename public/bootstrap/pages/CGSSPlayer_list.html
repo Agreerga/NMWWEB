@@ -76,11 +76,18 @@
             $('#dataTable').DataTable({
                 searching: false,
                 sort: true,
+                pagingType: "numbers",
+                lengthMenu: [ [20, 50, -1], [20, 50, "All"] ],
+                language: {
+                    lengthMenu: "每頁顯示玩家數量 _MENU_",
+                    zeroRecords: "Nothing found",
+                    info: "第 _PAGE_ / _PAGES_ 頁"
+                },
                 columnDefs: [{
                     targets: [0,1,5,6,7,8,9],
                     orderable: true,
                 }]
-            });
+        });
         },
         error:function(err){
             console.log(err)
