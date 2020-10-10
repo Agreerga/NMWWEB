@@ -56,15 +56,15 @@
                     res['query'][id]['sup_all_card_vi'] + "/" +
                     res['query'][id]['sup_all_card_life'];
                 $("#datable_content").append("<tr>" +
-                    "<td title=\"" + leader_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['leader_card_no'] + ".png\" /></td>" +
+                    "<td title=\"" + leader_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['leader_card_no'] + ".png\" />" + leader_pot + "</td>" +
                     "<td title=\"" + res['query'][id]['cgss_id'] + "\">" +  res['query'][id]['name'] + "</td>" +
                     "<td>" + res['query'][id]['level'] + "</td>" +
                     "<td>" + res['query'][id]['prp'] + "</td>" +
                     "<td>" + res['query'][id]['fan'] + "</td>" +
-                    "<td title=\"" + cu_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_cu_card_no'] + ".png\" /></td>" +
-                    "<td title=\"" + co_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_co_card_no'] + ".png\" /></td>" +
-                    "<td title=\"" + pa_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_pa_card_no'] + ".png\" /></td>" +
-                    "<td title=\"" + all_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_all_card_no'] + ".png\" /></td>" +
+                    "<td title=\"" + cu_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_cu_card_no'] + ".png\" />" + cu_pot + "</td>" +
+                    "<td title=\"" + co_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_co_card_no'] + ".png\" />" + co_pot + "</td>" +
+                    "<td title=\"" + pa_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_pa_card_no'] + ".png\" />" + pa_pot + "</td>" +
+                    "<td title=\"" + all_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_all_card_no'] + ".png\" />" + all_pot + "</td>" +
                     "<td>" + res['query'][id]['fc_master'] + "/" + res['query'][id]['clear_master'] +
                     "<br>" + res['query'][id]['fc_masterplus'] + "/" + res['query'][id]['clear_masterplus'] +
                     "<br>" + res['query'][id]['fc_trick'] + "/" + res['query'][id]['clear_trick'] +
@@ -74,7 +74,7 @@
                     "</tr>");
             }
             $('#dataTable').DataTable({
-                searching: false,
+                searching: true,
                 sort: true,
                 pagingType: "numbers",
                 lengthMenu: [ [20, 50, -1], [20, 50, "All"] ],
