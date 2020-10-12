@@ -5,17 +5,31 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use App\Repositories\CgssPlayerRepository;
 use App\Repositories\CgssCharacterRepository;
+use App\Repositories\CgssSongRepository;
 
 class CGSSController extends Controller
 {
     private $cgssRepo;
     private $cgssCharacterRepo;
+    private $cgssSongRepo;
 
     public function __construct(CgssPlayerRepository $cgssRepo,
-                                CgssCharacterRepository $cgssCharacterRepo)
+                                CgssCharacterRepository $cgssCharacterRepo,
+                                CgssSongRepository $cgssSongRepo)
     {
         $this->cgssRepo = $cgssRepo;
         $this->cgssCharacterRepo = $cgssCharacterRepo;
+        $this->cgssSongRepo = $cgssSongRepo;
+    }
+
+    public function getSongDataList()
+    {
+        $result = $this->cgssSongRepo->get_song_data();
+
+        return response()->json([
+            'status' => '0',
+            'query' => $result,
+        ]);
     }
 
     public function getCharacterDataList()
