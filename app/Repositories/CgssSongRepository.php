@@ -14,7 +14,7 @@ class CgssSongRepository extends BaseRepository
 
     public function get_song_data()
     {
-        $user = $this->model::select('*')->order('id','asc');
+        $user = $this->model::select('*')->orderBy('id','asc');
         return $user->get();
     }
 }
