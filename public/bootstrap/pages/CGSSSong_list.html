@@ -9,7 +9,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th width="200px" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">封面</span></th>
+                    <th width="100px" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">封面</span></th>
                     <th width="15%" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">曲名</span></th>
                     <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">屬性</span></th>
                     <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">M+</span></th>
@@ -33,7 +33,7 @@
         success:function(res){
             for(let id in res['query']){
                 $("#datable_content").append("<tr>" +
-                    "<td><img width=\"200px\" src=\"" + res['query'][id]['Image'] + "\" /></td>" +
+                    "<td><img width=\"100px\" src=\"" + res['query'][id]['Image'] + "\" /></td>" +
                     "<td>" + res['query'][id]['Name'] + "</td>" +
                     "<td>" + res['query'][id]['Type'] + "</td>" +
                     "<td>" + res['query'][id]['MPlus'] + "</td>" +
@@ -41,7 +41,13 @@
                     "<td>" + res['query'][id]['Grand'] + "</td>" +
                     "<td>" + res['query'][id]['OnBoardDate'] + "</td>" +
                     "<td>" + res['query'][id]['Length'] + "</td>" +
-                    "<td></td>" +
+                    "<td>" +
+                    res['query'][id]['Singers']
+                    .replaceAll("-----", "").replaceAll("---", "")
+                    .replaceAll("非表示", "").replaceAll(",,", "")
+                    .replace(/^,/g, "").replace(/,$/g, "")
+                    .replaceAll(",", "<br>").replaceAll("ランダム", "[ランダム]") +
+                    "</td>" +
                     "</tr>");
             }
             $('#dataTable').DataTable({
