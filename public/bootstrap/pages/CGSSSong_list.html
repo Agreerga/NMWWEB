@@ -44,9 +44,10 @@
                     "<td>" +
                     res['query'][id]['Singers']
                     .replaceAll("-----", "").replaceAll("---", "")
-                    .replaceAll("非表示", "").replaceAll(",,", "")
+                    .replaceAll("非表示", "").replaceAll("ランダム", "")
+                    .replaceAll(",,", "")
                     .replace(/^,/g, "").replace(/,$/g, "")
-                    .replaceAll(",", "<br>").replaceAll("ランダム", "[ランダム]") +
+                    .replaceAll(",", "<br>") +
                     "</td>" +
                     "</tr>");
             }
