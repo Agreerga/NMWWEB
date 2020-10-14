@@ -1,0 +1,64 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Producer經驗曲線</h1>
+<p class="mb-4"><a href="https://imascg-slstage-wiki.gamerch.com/" target="_blank">資料來源</a></p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th width="100px" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">等級</span></th>
+                    <th width="15%" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">體力</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">好友數量</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">下次升級經驗</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">累計經驗</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">補體耗石量</span></th>
+                </tr>
+                </thead>
+                <tbody id="datable_content">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $.ajax({
+        url:'http://kutabare.ros.tw:16888/api/nmw/cgssproducerexp',
+        method:'GET',
+        success:function(res){
+            for(let id in res['query']){
+                $("#datable_content").append("<tr>" +
+                    "<td>" + res['query'][id]['Plv'] + "</td>" +
+                    "<td>" + res['query'][id]['Sta'] + "</td>" +
+                    "<td>" + res['query'][id]['FCount'] + "</td>" +
+                    "<td>" + res['query'][id]['NextExp'] + "</td>" +
+                    "<td>" + res['query'][id]['TotalExp'] + "</td>" +
+                    "<td>" + res['query'][id]['JewelRecover'] + "</td>" +
+                    "</tr>");
+            }
+            $('#dataTable').DataTable({
+                sort: true,
+                pagingType: "numbers",
+                lengthMenu: [ [-1], ["All"] ],
+                language: {
+                    lengthMenu: "_MENU_",
+                    zeroRecords: "Nothing found",
+                    info: "第 _PAGE_ / _PAGES_ 頁"
+                },
+                rowCallback: function(nRow, data, index) {
+                    $('td', nRow).css('background-color', index % 2 == 0?'white':'whitesmoke');
+                },
+                columnDefs: [{
+                    targets: [],
+                    orderable: true,
+                }],
+                dom: '<"row col-md-12 justify-content-start"<"col-md-2"l><"col-md-6"f>>rt<"row col-md-12 justify-content-start"<"col-md-1"i><"col-md-1"p>>'
+            });
+        },
+        error:function(err){
+            console.log(err)
+        },
+    });
+</script>
