@@ -1,0 +1,67 @@
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!-- Page Heading -->
+<div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">關於本站</a></li>
+        <li class="breadcrumb-item"><a href="#">稽查AIE</a></li>
+    </ol>
+</div>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th width="100px" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">原推特</span></th>
+                    <th width="15%" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">ID</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">推特連結</span></th>
+                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">時間</span></th>
+                </tr>
+                </thead>
+                <tbody id="datable_content">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $.ajax({
+        url:'http://kutabare.ros.tw:16888/api/nmw/traceaie',
+        method:'GET',
+        success:function(res){
+            for(let id in res['query']){
+                $("#datable_content").append("<td>" +
+                    "<td>" + res['query'][id]['LikeTwitter'] + "</td>" +
+                    "<td>" + res['query'][id]['LinkID'] + "</td>" +
+                    "<td><blockquote class=\"twitter-tweet\" style=\"width: 400px;\" data-dnt=\"true\">" +
+                    "<a href=\"https://twitter.com/" + res['query'][id]['LikeTwitter'] + "/status/" + res['query'][id]['LinkID'] + "\"></a>" +
+                    "</blockquote></td>" +
+                    "<td>" + res['query'][id]['CreateTime'] + "</td>" +
+                    "</tr>");
+            }
+            $('#dataTable').DataTable({
+                sort: true,
+                pagingType: "numbers",
+                lengthMenu: [ [15, -1], [15, "All"] ],
+                language: {
+                    lengthMenu: "每頁顯示數量 _MENU_",
+                    zeroRecords: "Nothing found",
+                    info: "第 _PAGE_ / _PAGES_ 頁"
+                },
+                rowCallback: function(nRow, data, index) {
+                    $('td', nRow).css('background-color', index % 2 == 0?'white':'whitesmoke');
+                },
+                columnDefs: [{
+                    targets: [],
+                    orderable: true,
+                }],
+                dom: '<"row col-md-12 justify-content-start"<"col-md-2"l>>rt<"row col-md-12 justify-content-start"<"col-md-1"i><"col-md-1"p>>'
+            });
+        },
+        error:function(err){
+            console.log(err)
+        },
+    });
+</script>
