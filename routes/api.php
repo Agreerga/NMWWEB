@@ -21,4 +21,6 @@ Route::get('/nmw/cgssproducerexp', 'api\CGSSController@getProducerExpDataList');
 Route::get('/nmw/cgsssong', 'api\CGSSController@getSongDataList');
 Route::get('/nmw/cgsscharacter', 'api\CGSSController@getCharacterDataList');
 Route::get('/nmw/cgssplayer', 'api\CGSSController@getPlayerDataList');
+Route::get('/nmw/traceaie', 'api\TwitterTraceController@getTwitterTraceDataList');
+
 
