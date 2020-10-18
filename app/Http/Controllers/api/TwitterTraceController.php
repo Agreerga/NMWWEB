@@ -7,16 +7,16 @@ use App\Repositories\TwitterTraceRepository;
 
 class TwitterTraceController extends Controller
 {
-    private $twitterTrace;
+    private $twitterTraceRepo;
 
-    public function __construct(TwitterTrace $twitterTrace)
+    public function __construct(TwitterTraceRepository $twitterTraceRepo)
     {
-        $this->twitterTrace = $twitterTrace;
+        $this->twitterTraceRepo = $twitterTraceRepo;
     }
 
     public function getTwitterTraceDataList()
     {
-        $result = $this->twitterTrace->getTraceData();
+        $result = $this->twitterTraceRepo->getTraceData();
 
         return response()->json([
             'status' => '0',
