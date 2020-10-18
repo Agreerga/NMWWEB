@@ -30,9 +30,10 @@
             for(let id in res['query']){
                 let urls = "https://twitter.com/" + res['query'][id]['LikeTwitter'] + "/status/" + res['query'][id]['LinkID'];
                 $("#datable_content").append("<tr>" +
-                    "<td><blockquote class=\"twitter-tweet\" width=\"500px\">" +
+                    "<td>" +
+                    "<blockquote class=\"twitter-tweet\"><p lang=\"ja\" dir=\"ltr\">" +
                     "<a href=\"" + urls + "\"></a>" +
-                    "</blockquote>" +
+                    "</blockquote><script src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"><\/script>" +
                     "</td>" +
                     "</tr>");
             }
@@ -60,4 +61,3 @@
         },
     });
 </script>
-<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
