@@ -1,4 +1,3 @@
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <!-- Page Heading -->
 <div>
     <ol class="breadcrumb">
@@ -14,10 +13,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th width="100px" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">原推特</span></th>
-                    <th width="15%" style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">ID</span></th>
                     <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">推特連結</span></th>
-                    <th style="background-color:#36b9cc;text-align: center;"><span style="color:ghostwhite;">時間</span></th>
                 </tr>
                 </thead>
                 <tbody id="datable_content">
@@ -32,19 +28,20 @@
         method:'GET',
         success:function(res){
             for(let id in res['query']){
-                $("#datable_content").append("<td>" +
-                    "<td>" + res['query'][id]['LikeTwitter'] + "</td>" +
-                    "<td>" + res['query'][id]['LinkID'] + "</td>" +
-                    "<td><blockquote class=\"twitter-tweet\" style=\"width: 400px;\" data-dnt=\"true\">" +
-                    "<a href=\"https://twitter.com/" + res['query'][id]['LikeTwitter'] + "/status/" + res['query'][id]['LinkID'] + "\"></a>" +
-                    "</blockquote></td>" +
-                    "<td>" + res['query'][id]['CreateTime'] + "</td>" +
+                let urls = "https://twitter.com/" + res['query'][id]['LikeTwitter'] + "/status/" + res['query'][id]['LinkID'];
+                console.log(urls);
+                $("#datable_content").append("<tr>" +
+                    "<td><blockquote class=\"twitter-tweet\" width=\"500px\">" +
+                    "<a href=\"" + urls + "\"></a>" +
+                    "</blockquote>" +
+                    "<script src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"><\/script>" +
+                    "</td>" +
                     "</tr>");
             }
             $('#dataTable').DataTable({
                 sort: true,
                 pagingType: "numbers",
-                lengthMenu: [ [15, -1], [15, "All"] ],
+                lengthMenu: [ [30, -1], [30, "All"] ],
                 language: {
                     lengthMenu: "每頁顯示數量 _MENU_",
                     zeroRecords: "Nothing found",
