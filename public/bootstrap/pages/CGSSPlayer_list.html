@@ -66,7 +66,7 @@
                     "<td title=\"" + res['query'][id]['cgss_id'] + "\">" +  res['query'][id]['name'] + "</td>" +
                     "<td>" + res['query'][id]['level'] + "</td>" +
                     "<td>" + res['query'][id]['prp'] + "</td>" +
-                    "<td>" + res['query'][id]['fan'] + "</td>" +
+                    "<td>" + String(res['query'][id]['fan']).replace(/(.)(?=(\d{3})+$)/g,'$1,') + "</td>" +
                     "<td title=\"" + cu_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_cu_card_no'] + ".png\" /><br>" + cu_pot + "</td>" +
                     "<td title=\"" + co_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_co_card_no'] + ".png\" /><br>" + co_pot + "</td>" +
                     "<td title=\"" + pa_pot + "\"><img width=\"72px\" src=\"https://hidamarirhodonite.kirara.ca/icon_card/" + res['query'][id]['sup_pa_card_no'] + ".png\" /><br>" + pa_pot + "</td>" +
